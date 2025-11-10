@@ -6,33 +6,69 @@ import 'package:provider/provider.dart';
 void main() {
   final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
 
-  runApp(MultiProvider(
-    providers: [
-      ChangeNotifierProvider(
-          create: (_) => ThemeProvider(WidgetsBinding.instance.platformDispatcher.platformBrightness)
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => ThemeProvider(
+            WidgetsBinding.instance.platformDispatcher.platformBrightness,
           ),
-    ],
-    child: const MyApp(),
-  ));
+        ),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    WidgetsBinding.instance.removeObserver(this);
+  }
+
+  @override
+  void didChangePlatformBrightness() {
+    super.didChangePlatformBrightness();
+
+    final brightness =
+        WidgetsBinding.instance.platformDispatcher.platformBrightness;
+    Provider.of<ThemeProvider>(
+      context,
+      listen: false,
+    ).updateBrightness(brightness);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Consumer<ThemeProvider>(
       builder: (context, themeModeProvider, child) {
         return MaterialApp(
-          theme: themeModeProvider.brightness == Brightness.light ? AppTheme.lightTheme : AppTheme.darkTheme,
+          theme: themeModeProvider.brightness == Brightness.light
+              ? AppTheme.lightTheme
+              : AppTheme.darkTheme,
           home: Scaffold(
             appBar: AppBar(),
             body: Center(
               child: ElevatedButton(
-                  onPressed: () {
-                    themeModeProvider.toggleTheme();
-                  },
-                  child: Text('change theme')),
+                onPressed: () {
+                  themeModeProvider.toggleTheme();
+                },
+                child: Text('change theme'),
+              ),
             ),
           ),
         );
@@ -40,5 +76,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-
