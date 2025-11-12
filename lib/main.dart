@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hotelino/core/theme/app_theme.dart';
 import 'package:hotelino/core/theme/theme_provider.dart';
+import 'package:hotelino/features/onboarding/presentation/onboarding_provider.dart';
+import 'package:hotelino/features/onboarding/repository/onboarding_repo.dart';
 import 'package:hotelino/routes/app_routes.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
@@ -21,6 +23,7 @@ void main() async {
             WidgetsBinding.instance.platformDispatcher.platformBrightness,
           ),
         ),
+        ChangeNotifierProvider(create: (_)=> OnboardingProvider(OnboardingRepo()))
       ],
       child: const MyApp(),
     ),
@@ -64,6 +67,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     return Consumer<ThemeProvider>(
       builder: (context, themeModeProvider, child) {
         return MaterialApp(
+          debugShowCheckedModeBanner: false,
           title: 'Hotelino',
           routes: AppRoutes.routes,
           initialRoute: AppRoutes.onboarding,

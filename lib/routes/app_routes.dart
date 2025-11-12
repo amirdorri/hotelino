@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hotelino/features/home/home_screen.dart';
-import 'package:hotelino/features/onboarding/onBoarding_screen.dart';
+import 'package:hotelino/features/onboarding/presentation/onBoarding_screen.dart';
 
 class AppRoutes {
   
