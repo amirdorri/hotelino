@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:hotelino/core/theme/app_theme.dart';
 import 'package:hotelino/core/theme/theme_provider.dart';
+import 'package:hotelino/routes/app_routes.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
-void main() {
+import 'bootstrap.dart';
+
+void main() async {
   final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  lazyBootstrap();
+  FlutterNativeSplash.remove();
 
   runApp(
     MultiProvider(
@@ -57,20 +64,10 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     return Consumer<ThemeProvider>(
       builder: (context, themeModeProvider, child) {
         return MaterialApp(
-          theme: themeModeProvider.brightness == Brightness.light
-              ? AppTheme.lightTheme
-              : AppTheme.darkTheme,
-          home: Scaffold(
-            appBar: AppBar(),
-            body: Center(
-              child: ElevatedButton(
-                onPressed: () {
-                  themeModeProvider.toggleTheme();
-                },
-                child: Text('change theme'),
-              ),
-            ),
-          ),
+          title: 'Hotelino',
+          routes: AppRoutes.routes,
+          initialRoute: AppRoutes.onboarding,
+          theme: themeModeProvider.brightness == Brightness.light ? AppTheme.lightTheme  : AppTheme.darkTheme,
         );
       },
     );
