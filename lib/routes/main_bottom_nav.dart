@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hotelino/features/home/home_screen.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 import '../core/constants/constants.dart';
@@ -24,7 +25,10 @@ class _MainBottomNavState extends State<MainBottomNav> {
 
   List<Widget> _buildScreens() {
     return [
-      
+      HomeScreen(),
+      FavoriteScreen(),
+      BookingScreen(),
+      ProfileScreen()
     ];
   }
   List<PersistentBottomNavBarItem> _navBarsItems() {
@@ -93,10 +97,10 @@ class _MainBottomNavState extends State<MainBottomNav> {
     return PersistentTabView(
         context,
         controller: _controller,
-      onItemSelected: (value){
-
-      },
-      screens: [],
+      //onItemSelected: (value){},
+      screens: _buildScreens(),
+      items: _navBarsItems(),
+      backgroundColor: Theme.of(context).colorScheme.surface,
     );
   }
 }
