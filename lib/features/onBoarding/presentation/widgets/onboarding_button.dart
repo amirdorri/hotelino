@@ -1,5 +1,4 @@
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class OnboardingButton extends StatelessWidget {
@@ -30,7 +29,8 @@ class OnboardingButton extends StatelessWidget {
           border: Border.all(color: Theme.of(context).colorScheme.primary, width: 1)
         ),
         child: FloatingActionButton(
-            onPressed: onPressed,
+          key: ValueKey(icon),
+          onPressed: onPressed,
           elevation: 0,
           backgroundColor: backgroundColor,
           shape: const CircleBorder(),

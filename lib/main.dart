@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 import 'bootstrap.dart';
+import 'bottom_navigation.dart';
 
 void main() async {
   final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -73,6 +74,13 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
           initialRoute: AppRoutes.onboarding,
           theme: themeModeProvider.brightness == Brightness.light ? AppTheme.lightTheme  : AppTheme.darkTheme,
         );
+
+        // return MaterialApp(
+        //   debugShowCheckedModeBanner: false,
+        //   theme: ThemeData(colorSchemeSeed: Colors.red),
+        //   home: BottomNavigation(),
+        // );
+
       },
     );
   }
