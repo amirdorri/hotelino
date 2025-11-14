@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hotelino/features/home/home_screen.dart';
 import 'package:hotelino/features/onboarding/presentation/onBoarding_screen.dart';
+import 'package:hotelino/routes/main_bottom_nav.dart';
 
 class AppRoutes {
   
@@ -13,7 +14,7 @@ class AppRoutes {
 
     static final Map<String, WidgetBuilder> routes = {
     onboarding: (ctx) => const OnboardingScreen(),
-    home: (ctx) => const HomeScreen()
+    home: (ctx) => const MainBottomNav()//HomeScreen()
   };
   
 }

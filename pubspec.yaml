@@ -37,6 +37,7 @@ dependencies:
   flutter_native_splash: ^2.4.7
   provider: ^6.1.2
   persistent_bottom_nav_bar:
+  flutter_svg: ^2.2.2
 
 dev_dependencies:
   flutter_launcher_icons: ^0.14.4
