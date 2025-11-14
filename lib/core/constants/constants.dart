@@ -1,10 +1,12 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:hotelino/model/home/home_screen_data.dart';
 
 class AppConstants {
   static const String hotelsData = "assets/data/hotels.json";
-  static const String baseUrlImages = "https://dunijet.ir/content/projects/hotelino/";
+  static const String baseUrlImages =
+      "https://dunijet.ir/content/projects/hotelino/";
 }
 
 class AppColors {
@@ -26,21 +28,20 @@ class AppColors {
   static const Color darkButton = Color(0xFF5D4037);
 }
 
+class HomePageDataConstants {
+  static const List<String> _favoriteHotelIds = ["1", "3", "5", "7"];
+  static const List<String> _discountedHotelIds = ["2", "4", "6", "8"];
+  static const List<String> _recentlyViewedHotelIds = ["1", "4", "9"];
+  static const List<String> _popularHotelIds = ["3", "6", "9", "10"];
+  static const List<String> _specialOfferHotelIds = ["5", "7", "10"];
+  static const List<String> _newestHotelIds = ["8", "9", "10"];
 
-// class HomePageDataConstants {
-//   static const List<String> _favoriteHotelIds = ["1", "3", "5", "7"];
-//   static const List<String> _discountedHotelIds = ["2", "4", "6", "8"];
-//   static const List<String> _recentlyViewedHotelIds = ["1", "4", "9"];
-//   static const List<String> _popularHotelIds = ["3", "6", "9", "10"];
-//   static const List<String> _specialOfferHotelIds = ["5", "7", "10"];
-//   static const List<String> _newestHotelIds = ["8", "9", "10"];
-
-//   static HomePageData get homePageData => HomePageData(
-//         favotires: _favoriteHotelIds,
-//         discounted: _discountedHotelIds,
-//         recentlyViewed: _recentlyViewedHotelIds,
-//         popular: _popularHotelIds,
-//         specialOffers: _specialOfferHotelIds,
-//         newest: _newestHotelIds,
-//       );
-// }
+  static HomeScreenData get homePageData => HomeScreenData(
+    favotires: _favoriteHotelIds,
+    discounted: _discountedHotelIds,
+    recentlyViewed: _recentlyViewedHotelIds,
+    popular: _popularHotelIds,
+    specialOffers: _specialOfferHotelIds,
+    newest: _newestHotelIds,
+  );
+}

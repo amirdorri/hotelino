@@ -1,4 +1,4 @@
-import 'package:hotelino/model/HotelModel.dart';
+import 'package:hotelino/model/home/HotelModel.dart';
 import 'package:hotelino/shared/service/json_data_service.dart';
 
 class HotelRepository {

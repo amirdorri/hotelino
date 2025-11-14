@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 import 'package:hotelino/core/constants/constants.dart';
-import 'package:hotelino/model/HotelModel.dart';
+import 'package:hotelino/model/home/HotelModel.dart';
 
 class JsonDataService {
 
