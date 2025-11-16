@@ -28,7 +28,7 @@ class AppColors {
   static const Color darkButton = Color(0xFF5D4037);
 }
 
-class HomePageDataConstants {
+class HomeScreenDataConstants {
   static const List<String> _favoriteHotelIds = ["1", "3", "5", "7"];
   static const List<String> _discountedHotelIds = ["2", "4", "6", "8"];
   static const List<String> _recentlyViewedHotelIds = ["1", "4", "9"];

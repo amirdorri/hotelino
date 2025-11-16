@@ -1,30 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:hotelino/core/theme/app_theme.dart';
 import 'package:hotelino/core/theme/theme_provider.dart';
+import 'package:hotelino/features/home/data/hotel_repository.dart';
+import 'package:hotelino/features/home/presentation/provider/home_provider.dart';
 import 'package:hotelino/features/onboarding/presentation/onboarding_provider.dart';
 import 'package:hotelino/features/onboarding/repository/onboarding_repo.dart';
 import 'package:hotelino/routes/app_routes.dart';
+import 'package:hotelino/shared/service/json_data_service.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 import 'bootstrap.dart';
-import 'bottom_navigation.dart';
 
 void main() async {
   final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   lazyBootstrap();
   FlutterNativeSplash.remove();
-
+  final hotelRepo = HotelRepository(jsonDataService: JsonDataService());
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (_) => ThemeProvider(
-            WidgetsBinding.instance.platformDispatcher.platformBrightness,
+          create: (_) => ThemeProvider(WidgetsBinding.instance.platformDispatcher.platformBrightness,
           ),
         ),
-        ChangeNotifierProvider(create: (_)=> OnboardingProvider(OnboardingRepo()))
+        ChangeNotifierProvider(create: (_)=> OnboardingProvider(OnboardingRepo())),
+        ChangeNotifierProvider(create: (_)=> HomeProvider(hotelRepo)),
       ],
       child: const MyApp(),
     ),
@@ -72,7 +74,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
           title: 'Hotelino',
           routes: AppRoutes.routes,
           initialRoute: AppRoutes.onboarding,
-          theme: themeModeProvider.brightness == Brightness.light ? AppTheme.lightTheme  : AppTheme.darkTheme,
+          theme: themeModeProvider.brightness == Brightness.light ? AppTheme
+              .lightTheme : AppTheme.darkTheme,
         );
 
         // return MaterialApp(
@@ -80,7 +83,6 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         //   theme: ThemeData(colorSchemeSeed: Colors.red),
         //   home: BottomNavigation(),
         // );
-
       },
     );
   }
