@@ -18,6 +18,7 @@ class ProfileProvider extends ChangeNotifier {
 
   fetchUserProfile() async {
     _profile = await _profileRepository.fetchUserProfile();
+    notifyListeners();
   }
 
   fetchHotels() async {

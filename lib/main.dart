@@ -3,7 +3,9 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:hotelino/core/theme/app_theme.dart';
 import 'package:hotelino/core/theme/theme_provider.dart';
 import 'package:hotelino/features/home/data/hotel_repository.dart';
+import 'package:hotelino/features/home/data/profile_repository.dart';
 import 'package:hotelino/features/home/presentation/provider/home_provider.dart';
+import 'package:hotelino/features/home/presentation/provider/profile_provider.dart';
 import 'package:hotelino/features/onboarding/presentation/onboarding_provider.dart';
 import 'package:hotelino/features/onboarding/repository/onboarding_repo.dart';
 import 'package:hotelino/routes/app_routes.dart';
@@ -27,6 +29,7 @@ void main() async {
         ),
         ChangeNotifierProvider(create: (_)=> OnboardingProvider(OnboardingRepo())),
         ChangeNotifierProvider(create: (_)=> HomeProvider(hotelRepo)),
+        ChangeNotifierProvider(create: (_)=> ProfileProvider(ProfileRepository(), hotelRepo)),
       ],
       child: const MyApp(),
     ),
