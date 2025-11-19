@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hotelino/features/home/presentation/provider/home_provider.dart';
 import 'package:hotelino/features/home/presentation/provider/widgets/ad_banner.dart';
 import 'package:hotelino/features/home/presentation/provider/widgets/home_appbar.dart';
+import 'package:hotelino/features/home/presentation/provider/widgets/hotel_list_section.dart';
 import 'package:hotelino/features/home/presentation/provider/widgets/search_bar.dart';
 import 'package:provider/provider.dart';
 
@@ -20,37 +21,29 @@ class HomeScreen extends StatelessWidget {
             SizedBox(height: 16),
             SearchBarWidget(),
             SizedBox(height: 16),
-            AdBanner()
+            AdBanner(),
+            Consumer<HomeProvider>(
+              builder: (context, homeProvider, child) {
+                return HotelListSection(
+                  title: 'محبوب ترین هتل ها',
+                  hotels: homeProvider.getPopularHotels(),
+                  onSeeAllPressed: () {},
+                );
+              },
+            ),
           ],
         ),
-      )
-      );
+      ),
+    );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 class FavoriteScreen extends StatelessWidget {
   const FavoriteScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-        body: Center(child: Text('Favorite'),)
-    );
+    return const Scaffold(body: Center(child: Text('Favorite')));
   }
 }
 
@@ -59,9 +52,7 @@ class BookingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-        body: Center(child: Text('BOOKING'),)
-    );
+    return const Scaffold(body: Center(child: Text('BOOKING')));
   }
 }
 
@@ -70,8 +61,6 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-        body: Center(child: Text('Profile'),)
-    );
+    return const Scaffold(body: Center(child: Text('Profile')));
   }
 }
