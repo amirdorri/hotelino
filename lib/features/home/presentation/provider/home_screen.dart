@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hotelino/features/home/presentation/provider/home_provider.dart';
+import 'package:hotelino/features/home/presentation/provider/widgets/ad_banner.dart';
 import 'package:hotelino/features/home/presentation/provider/widgets/home_appbar.dart';
+import 'package:hotelino/features/home/presentation/provider/widgets/search_bar.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -11,7 +13,17 @@ class HomeScreen extends StatelessWidget {
     final homeProvider = Provider.of<HomeProvider>(context);
     return Scaffold(
       appBar: HomeAppbar(),
-      body: const Center(child: Text('HOME'),)
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            SizedBox(height: 16),
+            SearchBarWidget(),
+            SizedBox(height: 16),
+            AdBanner()
+          ],
+        ),
+      )
       );
   }
 }
