@@ -6,6 +6,7 @@ import 'package:hotelino/features/home/presentation/provider/widgets/home_appbar
 import 'package:hotelino/features/home/presentation/provider/widgets/hotel_card.dart';
 import 'package:hotelino/features/home/presentation/provider/widgets/hotel_list_section.dart';
 import 'package:hotelino/features/home/presentation/provider/widgets/search_bar.dart';
+import 'package:hotelino/features/home/presentation/provider/widgets/srory_carousel.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -13,7 +14,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final homeProvider = Provider.of<HomeProvider>(context);
+    //final homeProvider = Provider.of<HomeProvider>(context);
     return Scaffold(
       appBar: HomeAppbar(),
       body: SingleChildScrollView(
@@ -43,6 +44,12 @@ class HomeScreen extends StatelessWidget {
               },
             ),
             SizedBox(height: 16),
+            Consumer<HomeProvider>(
+              builder: (context, homeProvider, child) {
+                return StoryCarousel(images: homeProvider.getStoryImages(), titles: homeProvider.storyTitles);
+              },
+            ),
+
           ],
         ),
       ),
