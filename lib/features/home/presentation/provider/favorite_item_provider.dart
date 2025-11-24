@@ -20,7 +20,7 @@ class FavoriteItemProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  bool isFavorite(int hotelId) {
+  bool isFavorite(String hotelId) {
     return _favoriteHotelIds.contains(hotelId);
   }
 
