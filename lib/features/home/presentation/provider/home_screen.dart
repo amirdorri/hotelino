@@ -66,14 +66,6 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-class BookingScreen extends StatelessWidget {
-  const BookingScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(body: Center(child: Text('BOOKING')));
-  }
-}
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
