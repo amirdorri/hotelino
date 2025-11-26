@@ -1,9 +1,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hotelino/features/favorite/presentation/favorite_screen.dart';
 import 'package:hotelino/features/home/presentation/provider/home_screen.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
-
 import '../core/constants/constants.dart';
 
 class MainBottomNav extends StatefulWidget {
