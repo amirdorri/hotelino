@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hotelino/features/home/data/hotel_repository.dart';
 import 'package:hotelino/features/home/data/profile_repository.dart';
 import 'package:hotelino/model/home/HotelModel.dart';
-import 'package:hotelino/model/home/profile/profile.dart';
+import 'package:hotelino/model/profile/profile.dart';
 
 class ProfileProvider extends ChangeNotifier {
   final ProfileRepository _profileRepository;

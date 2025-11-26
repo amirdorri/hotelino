@@ -1,4 +1,4 @@
-import 'package:hotelino/model/home/profile/profile.dart';
+import 'package:hotelino/model/profile/profile.dart';
 
 class ProfileRepository {
 
