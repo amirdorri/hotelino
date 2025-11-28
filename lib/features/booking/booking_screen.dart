@@ -24,14 +24,26 @@ class _BookingScreenState extends State<BookingScreen> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('فرم رزرو هتل', style: Theme.of(context).textTheme.headlineMedium),
+        title: Text(
+          'فرم رزرو هتل',
+          style: Theme.of(context).textTheme.headlineMedium,
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: SingleChildScrollView(
-          child: Consumer<BookingProvider>(builder: (context, value, child) {
+          child: Consumer<BookingProvider>(
+            builder: (context, value, child) {
+              return Form(
+                key: _formKey,
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
 
-          },),
+                ]),
+              );
+            },
+          ),
         ),
       ),
     );
