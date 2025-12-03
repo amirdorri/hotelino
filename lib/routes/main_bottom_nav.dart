@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hotelino/core/utils/keyboard.dart';
 import 'package:hotelino/features/favorite/presentation/favorite_screen.dart';
 import 'package:hotelino/features/home/presentation/provider/home_screen.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
@@ -98,7 +99,9 @@ class _MainBottomNavState extends State<MainBottomNav> {
     return PersistentTabView(
         context,
         controller: _controller,
-      //onItemSelected: (value){},
+      onItemSelected: (index){
+          unfocusEditors(context);
+      },
       screens: _buildScreens(),
       items: _navBarsItems(),
       backgroundColor: Theme.of(context).colorScheme.surface,
