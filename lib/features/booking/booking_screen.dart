@@ -4,6 +4,8 @@ import 'package:hotelino/features/booking/presentation/booking_form_field.dart';
 import 'package:hotelino/features/booking/widget/date_picker_field.dart';
 import 'package:provider/provider.dart';
 
+import 'widget/number_text_filed.dart';
+
 class BookingScreen extends StatefulWidget {
   const BookingScreen({super.key});
 
@@ -96,20 +98,20 @@ class _BookingScreenState extends State<BookingScreen> {
                       },
                     ),
                     SizedBox(height: 8),
-                    // NumberFormField(
-                    //   initialValue: bookingProvider.booking.phoneNumber,
-                    //   validator: (value) {
-                    //     if (value == null || value.isEmpty) {
-                    //       return 'لطفا شماره را به درستی وارد کنید';
-                    //     }
-                    //     return null;
-                    //   },
-                    //   onSaved: (newValue) {
-                    //     if (newValue != null) {
-                    //       bookingProvider.setPhoneNumber(newValue);
-                    //     }
-                    //   },
-                    // ),
+                    NumberFormField(
+                      initialValue: bookingProvider.booking.phoneNumber,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'لطفا شماره را به درستی وارد کنید';
+                        }
+                        return null;
+                      },
+                      onSaved: (newValue) {
+                        if (newValue != null) {
+                          bookingProvider.setPhoneNumber(newValue);
+                        }
+                      },
+                    ),
                   ],
                 ),
               );
