@@ -93,7 +93,7 @@ class _BookingScreenState extends State<BookingScreen> {
                         return null;
                       },
                       onSaved: (newValue) {
-                        if(newValue != null) {
+                        if (newValue != null) {
                           bookingProvider.setDateRange(newValue);
                         }
                       },
@@ -114,7 +114,26 @@ class _BookingScreenState extends State<BookingScreen> {
                       },
                     ),
                     SizedBox(height: 8),
-                    TermsWidget(initialValue: false)
+                    TermsWidget(initialValue: false),
+                    SizedBox(height: 8),
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  'درخواست رزرو با موفقیت ثبت شد! 🎉',
+                                  textDirection: TextDirection.rtl,
+                                ),
+                              ),
+                            );
+                          }
+                        },
+                        child: Text('جستجوی هتل ها'),
+                      ),
+                    ),
                   ],
                 ),
               );
