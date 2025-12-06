@@ -1,14 +1,4 @@
 
-// To parse this JSON data, do
-//
-//     final hotelModel = hotelModelFromJson(jsonString);
-
-//  import 'dart:convert';
-//
-// HotelModel hotelModelFromJson(String str) => HotelModel.fromJson(json.decode(str));
-//
-// String hotelModelToJson(HotelModel data) => json.encode(data.toJson());
-
 import 'package:hotelino/model/home/bed_type.dart';
 import 'package:hotelino/model/home/location.dart';
 

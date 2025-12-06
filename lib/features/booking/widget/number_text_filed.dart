@@ -1,11 +1,10 @@
-
 import 'package:flutter/material.dart';
 import 'package:hotelino/core/constants/constants.dart';
 import 'package:hotelino/model/booking/country.dart';
 
 class NumberFormField extends StatefulWidget {
   static final GlobalKey<NumberFormFieldState> numberFieldKey =
-  GlobalKey<NumberFormFieldState>();
+      GlobalKey<NumberFormFieldState>();
 
   final String initialValue;
   final FormFieldValidator<String>? validator;
@@ -48,7 +47,9 @@ class NumberFormFieldState extends State<NumberFormField> {
 
     _controller.addListener(() {
       setState(() {
-        _textAlign = _controller.text.isEmpty ? TextAlign.right : TextAlign.left;
+        _textAlign = _controller.text.isEmpty
+            ? TextAlign.right
+            : TextAlign.left;
       });
     });
 
@@ -82,10 +83,7 @@ class NumberFormFieldState extends State<NumberFormField> {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            Text(
-              "شماره تماس",
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
+            Text("شماره تماس", style: Theme.of(context).textTheme.titleMedium),
             const SizedBox(height: 8),
             SizedBox(
               height: 56,
@@ -120,7 +118,7 @@ class NumberFormFieldState extends State<NumberFormField> {
                                   width: 28,
                                   height: 28,
                                   errorBuilder: (context, error, stackTrace) =>
-                                  const Icon(Icons.flag, size: 28),
+                                      const Icon(Icons.flag, size: 28),
                                 ),
                                 const SizedBox(width: 8),
                                 Text(
@@ -128,9 +126,7 @@ class NumberFormFieldState extends State<NumberFormField> {
                                   style: const TextStyle(fontSize: 14),
                                 ),
                                 const SizedBox(width: 8),
-                                Text(
-                                  country.dialCode,
-                                ),
+                                Text(country.dialCode),
                               ],
                             ),
                           );
@@ -173,7 +169,10 @@ class NumberFormFieldState extends State<NumberFormField> {
                 padding: const EdgeInsets.only(top: 8, right: 12),
                 child: Text(
                   field.errorText ?? '',
-                  style: TextStyle(color: Theme.of(context).colorScheme.error, fontSize: 12),
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.error,
+                    fontSize: 12,
+                  ),
                 ),
               ),
           ],

@@ -9,9 +9,9 @@ import 'package:hotelino/model/home/HotelModel.dart';
 class FavoriteHotelCard extends StatelessWidget {
   
   final HotelModel hotel;
-  Function(String) onRemoveFavotiteClicked;
+  Function(String) onRemoveFavoriteClicked;
 
-  FavoriteHotelCard({super.key, required this.hotel, required this.onRemoveFavotiteClicked});
+  FavoriteHotelCard({super.key, required this.hotel, required this.onRemoveFavoriteClicked});
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +102,7 @@ class FavoriteHotelCard extends StatelessWidget {
             left: 16,
             top: 16,
             child: GestureDetector(
-              onTap: () => onRemoveFavotiteClicked(hotel.id),
+              onTap: () => onRemoveFavoriteClicked(hotel.id),
               child: const Icon(
                 Icons.favorite,
                 size: 24,

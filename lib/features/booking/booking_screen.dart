@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:hotelino/features/booking/booking_provider.dart';
 import 'package:hotelino/features/booking/presentation/booking_form_field.dart';
@@ -114,7 +115,16 @@ class _BookingScreenState extends State<BookingScreen> {
                       },
                     ),
                     SizedBox(height: 8),
-                    TermsWidget(initialValue: false),
+                    TermsWidget(
+                        initialValue: false,
+                        validator: (value) {
+                          if (value == null || value == false) {
+                            return 'لطفا قوانین برنامه را تایید کنید';
+                          }
+                          return null;
+                        },
+                        onSaved: (newValue) {},
+                    ),
                     SizedBox(height: 8),
                     SizedBox(
                       width: double.infinity,

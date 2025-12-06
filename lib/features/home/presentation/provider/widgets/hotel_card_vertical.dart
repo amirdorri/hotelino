@@ -1,4 +1,6 @@
 
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:hotelino/core/utils/network.dart';
 import 'package:hotelino/core/utils/price_formatter.dart';
@@ -11,6 +13,7 @@ class HotelCardVertical extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    int i = Random().nextInt(14) + 1;
     return GestureDetector(
       onTap: () {
         // PersistentNavBarNavigator.pushNewScreen(
@@ -95,8 +98,9 @@ class HotelCardVertical extends StatelessWidget {
                 topRight: Radius.circular(15),
                 bottomRight: Radius.circular(15),
               ),
-              child: Image.network(
-                networkUrl(hotel.images[0]),
+              child: Image.asset(
+                "assets/images/hotel_pics/hotel_pic$i.jpg",
+
                 width: 100,
                 height: double.infinity,
                 fit: BoxFit.cover,

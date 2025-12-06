@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:hotelino/core/utils/network.dart';
 import 'package:hotelino/core/utils/price_formatter.dart';
@@ -6,121 +8,154 @@ import 'package:hotelino/model/home/HotelModel.dart';
 import 'package:provider/provider.dart';
 import 'animated_favorite_button.dart';
 
-
-class HotelCard extends StatelessWidget {
+class HotelCard extends StatefulWidget {
   final HotelModel hotel;
 
   const HotelCard({super.key, required this.hotel});
 
   @override
-  Widget build(BuildContext context) {
+  State<HotelCard> createState() => _HotelCardState();
+}
 
+class _HotelCardState extends State<HotelCard> {
+  late int myRandomNumber;
+
+  @override
+  void initState() {
+    super.initState();
+
+    myRandomNumber = Random().nextInt(14) + 1;
+
+    print("Hotel random image = $myRandomNumber");
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final favoriteProvider = Provider.of<FavoriteItemProvider>(context);
-    final isFavorite = favoriteProvider.isFavorite(hotel.id);
+    final isFavorite = favoriteProvider.isFavorite(widget.hotel.id);
 
     return SizedBox(
       width: 280,
       child: Card(
         elevation: 4,
-        margin: EdgeInsets.all(0),
+        margin: EdgeInsets.zero,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Stack(
               children: [
                 ClipRRect(
-                  borderRadius:
-                  BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16)),
-                  child: Image.network(
-                    networkUrl(hotel.images[0]),
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(16),
+                    topRight: Radius.circular(16),
+                  ),
+                  child: Image.asset(
+                    'assets/images/hotel_pics/hotel_pic$myRandomNumber.jpg',
                     height: 200,
                     width: double.infinity,
                     fit: BoxFit.cover,
+
+                    // جلوگیری از کرش
+                    errorBuilder: (c, e, s) {
+                      return Container(
+                        height: 200,
+                        color: Colors.grey.shade300,
+                        child: const Icon(Icons.broken_image, size: 40),
+                      );
+                    },
                   ),
                 ),
+
                 Positioned(
                   top: 8,
                   right: 8,
                   child: AnimatedFavoriteButton(
                     isFavorite: isFavorite,
                     onTap: () {
-                      favoriteProvider.toggleFavorite(hotel.id);
+                      favoriteProvider.toggleFavorite(widget.hotel.id);
                     },
                   ),
                 ),
               ],
             ),
+
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
+
                   Row(
                     children: [
-                      SizedBox(width: 8),
-                      Icon(Icons.start, color: Colors.amber, size: 20),
-                      SizedBox(width: 4),
+                      const SizedBox(width: 8),
+                      const Icon(Icons.star, color: Colors.amber, size: 20),
+                      const SizedBox(width: 4),
                       Text(
-                        '${hotel.rating} (${formatPrice(hotel.reviewCount)})',
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        '${widget.hotel.rating} (${formatPrice(widget.hotel.reviewCount)})',
+                        style: const TextStyle(fontWeight: FontWeight.bold),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       Text(
-                        hotel.name,
-                        style: TextStyle(
+                        widget.hotel.name,
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 18,
                         ),
                       ),
-                      SizedBox(width: 8),
+                      const SizedBox(width: 8),
                     ],
                   ),
 
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
+
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      SizedBox(width: 8),
+                      const SizedBox(width: 8),
                       Text(
-                        '${hotel.city}, ${hotel.country}',
-                        style: TextStyle(color: Colors.grey),
+                        '${widget.hotel.city}, ${widget.hotel.country}',
+                        style: const TextStyle(color: Colors.grey),
                       ),
-                      SizedBox(width: 4),
+                      const SizedBox(width: 4),
                       Icon(
                         Icons.location_on,
                         color: Theme.of(context).colorScheme.primary,
                         size: 18,
                       ),
-                      SizedBox(width: 8),
+                      const SizedBox(width: 8),
                     ],
                   ),
 
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
+
                   Padding(
-                    padding: EdgeInsets.only(right: 8),
+                    padding: const EdgeInsets.only(right: 8),
                     child: Text(
-                      "از ${formatPrice(hotel.pricePerNight)} / شب",
-                      style: TextStyle(
+                      "از ${formatPrice(widget.hotel.pricePerNight)} / شب",
+                      style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
-                  SizedBox(height: 8),
+
+                  const SizedBox(height: 8),
+
                   Padding(
-                    padding: EdgeInsets.only(right: 8, left: 8),
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
                     child: SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
                         onPressed: () {},
-                        child: Text(
+                        child: const Text(
                           "مشاهده و انتخاب اتاق",
                           style: TextStyle(color: Colors.white),
                         ),
                       ),
                     ),
                   ),
-                  SizedBox(height: 8),
+
+                  const SizedBox(height: 8),
                 ],
               ),
             ),
@@ -130,6 +165,7 @@ class HotelCard extends StatelessWidget {
     );
   }
 }
+
 
 
 

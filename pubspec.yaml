@@ -39,6 +39,7 @@ dependencies:
   persistent_bottom_nav_bar:
   flutter_svg: ^2.2.2
   intl: ^0.20.2
+  http:
   carousel_slider: ^5.1.1
   persian_datetime_picker: ^3.2.0
 
@@ -100,6 +101,7 @@ flutter:
       - assets/images/
       - assets/icon/
       - assets/data/
+      - assets/images/hotel_pics/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

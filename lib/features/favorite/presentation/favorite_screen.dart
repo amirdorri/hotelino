@@ -40,7 +40,7 @@ class FavoriteScreen extends StatelessWidget {
                       ),
                       child: FavoriteHotelCard(
                         hotel: favoriteProvider.favoriteHotelList[index],
-                        onRemoveFavotiteClicked: (hotelId) {
+                        onRemoveFavoriteClicked: (hotelId) {
                           favoriteProvider.toggleFavorite(hotelId);
                         },
                       ),
