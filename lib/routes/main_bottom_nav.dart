@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:hotelino/core/utils/keyboard.dart';
 import 'package:hotelino/features/favorite/presentation/favorite_screen.dart';
 import 'package:hotelino/features/home/presentation/provider/home_screen.dart';
+import 'package:hotelino/features/profile/profile_screen.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import '../core/constants/constants.dart';
 import '../features/booking/booking_screen.dart';
