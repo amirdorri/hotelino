@@ -5,6 +5,7 @@ import 'package:hotelino/model/home/HotelModel.dart';
 import 'package:hotelino/model/profile/profile.dart';
 
 class ProfileProvider extends ChangeNotifier {
+
   final ProfileRepository _profileRepository;
   final HotelRepository _hotelRepository;
   List<HotelModel> _hotels = [];
