@@ -7,8 +7,9 @@ import 'package:hotelino/model/home/HotelModel.dart';
 import 'package:hotelino/shared/service/json_data_service.dart';
 
 class HotelDetailScreen extends StatelessWidget {
-  const HotelDetailScreen({super.key, required this.hotelId});
+  const HotelDetailScreen({super.key, required this.hotelId, required this.imagePath});
   final String hotelId;
+  final String imagePath;
 
   @override
   Widget build(BuildContext context) {
@@ -36,9 +37,9 @@ class HotelDetailScreen extends StatelessWidget {
               flexibleSpace: FlexibleSpaceBar(
                 background: GestureDetector(
                   onLongPress: (){},
-                  child: Image.network(
-                      fit: BoxFit.cover,
-                      networkUrl(hotel.images.first)
+                  child: Image.asset(
+                    imagePath,
+                    fit: BoxFit.cover,
                   ),
                 ),
               ),
