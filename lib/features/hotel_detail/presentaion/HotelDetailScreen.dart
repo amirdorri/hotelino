@@ -1,7 +1,7 @@
 
 
+import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:hotelino/core/utils/network.dart';
 import 'package:hotelino/features/home/data/hotel_repository.dart';
 import 'package:hotelino/model/home/HotelModel.dart';
 import 'package:hotelino/shared/service/json_data_service.dart';
@@ -16,7 +16,7 @@ class HotelDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final hotelRepository = HotelRepository(jsonDataService: JsonDataService());
     final textTheme = Theme.of(context).textTheme;
-
+    //var myRandomNumber = Random().nextInt(14) + 1;
     return FutureBuilder<HotelModel>(
       future: hotelRepository.getHotelById(hotelId),
       builder: (context, snapshot) {
@@ -147,7 +147,61 @@ class HotelDetailScreen extends StatelessWidget {
                           );
                         },
                         ).toList(), //end of Map
-                      )
+                      ),
+                      SizedBox(height: 16),
+                      Text(
+                        "گالری تصاویر",
+                        style: textTheme.headlineSmall,
+                        textDirection: TextDirection.rtl,
+                      ),
+                      SizedBox(
+                        height: 8,
+                      ),
+                      SizedBox(
+                        height: 100,
+                        child: ListView.builder(
+                          reverse: true,
+                            scrollDirection: Axis.horizontal,
+                            itemCount: hotel.images.length,
+                            itemBuilder:(context, index) {
+                              return Row(
+                                children: [
+                                GestureDetector(
+                                  onTap: () {
+
+                                  },
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(12),
+                                    child: Image.asset(
+                                      imagePath,
+                                      // 'assets/images/hotel_pics/hotel_pic$myRandomNumber.jpg',
+                                      width: 120,
+                                      height: 100,
+                                      fit: BoxFit.cover,
+                                    ), //TODO
+                                  ),
+                                ),
+                                  if(index != 0)
+                                    SizedBox(width: 8),
+                                ],
+                              );
+                            },
+                        ),
+                      ),
+                      SizedBox(height: 16),
+                      Text(
+                        'توضیحات',
+                        style: textTheme.headlineSmall,
+                        textDirection: TextDirection.rtl,
+                      ),
+                      SizedBox(height: 8),
+                      Text(
+                        hotel.description,
+                        style: textTheme.bodyMedium!.copyWith(height: 1.5),
+                        textDirection: TextDirection.rtl,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 7,
+                      ),
                     ],
                   ),
                 ),
