@@ -1,9 +1,10 @@
 
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:hotelino/core/utils/price_formatter.dart';
+import 'package:hotelino/features/hotel_detail/presentaion/HotelDetailScreen.dart';
 import 'package:hotelino/model/home/HotelModel.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 class HotelCardVertical extends StatelessWidget {
   final HotelModel hotel;
@@ -15,12 +16,12 @@ class HotelCardVertical extends StatelessWidget {
     int i = Random().nextInt(14) + 1;
     return GestureDetector(
       onTap: () {
-        // PersistentNavBarNavigator.pushNewScreen(
-        //   context,
-        //   withNavBar: true,
-        //   screen: HotelDetailPage(hotelId: hotel.id),
-        //   pageTransitionAnimation: PageTransitionAnimation.cupertino,
-        // );
+        PersistentNavBarNavigator.pushNewScreen(
+          context,
+          withNavBar: true,
+          screen: HotelDetailScreen(hotelId: hotel.id, imagePath: "assets/images/hotel_pics/hotel_pic$i.jpg",),
+          pageTransitionAnimation: PageTransitionAnimation.cupertino,
+        );
       },
       child: Container(
         height: 150,
@@ -99,7 +100,6 @@ class HotelCardVertical extends StatelessWidget {
               ),
               child: Image.asset(
                 "assets/images/hotel_pics/hotel_pic$i.jpg",
-
                 width: 100,
                 height: double.infinity,
                 fit: BoxFit.cover,

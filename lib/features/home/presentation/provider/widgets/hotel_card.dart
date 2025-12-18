@@ -39,7 +39,8 @@ class _HotelCardState extends State<HotelCard> {
           context,
           screen: HotelDetailScreen(
             hotelId: widget.hotel.id,
-            imagePath: 'assets/images/hotel_pics/hotel_pic$myRandomNumber.jpg',),
+            imagePath: 'assets/images/hotel_pics/hotel_pic$myRandomNumber.jpg',
+          ),
           withNavBar: false,
           pageTransitionAnimation: PageTransitionAnimation.cupertino,
         );
