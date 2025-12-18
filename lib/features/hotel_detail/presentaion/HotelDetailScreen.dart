@@ -7,6 +7,8 @@ import 'package:hotelino/shared/service/json_data_service.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
+import 'full_screen_map.dart';
+
 class HotelDetailScreen extends StatelessWidget {
   const HotelDetailScreen({
     super.key,
@@ -202,7 +204,14 @@ class HotelDetailScreen extends StatelessWidget {
                         children: [
                           TextButton(
                             onPressed: () {
-                              // open Map
+                              PersistentNavBarNavigator.pushNewScreen(context,
+                                  screen: FullScreenMapPage(
+                                      latitude: hotel.location.latitude,
+                                      longitude: hotel.location.longitude,
+                                      hotelName: hotel.name
+                                  ),
+                                  withNavBar: false,
+                                  pageTransitionAnimation: PageTransitionAnimation.cupertino);
                             },
                             child: Text(
                               'تمام صفحه',
