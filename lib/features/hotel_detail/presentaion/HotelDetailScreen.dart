@@ -79,9 +79,74 @@ class HotelDetailScreen extends StatelessWidget {
                           Icon(
                             Icons.location_on,
                             color:Colors.grey ,
-                          ),
-
+                          )
                         ],
+                      ),
+                      SizedBox(height: 16),
+                      Text(
+                        'امکانات رفاهی',
+                        textAlign: TextAlign.right,
+                        textDirection: TextDirection.rtl,
+                        style: textTheme.headlineSmall,
+                      ),
+                      SizedBox(height: 8),
+                      Wrap(
+                        spacing: 14,
+                        children: hotel.amenities.map((a) {
+                          IconData icon;
+                          switch (a) {
+                            case 'ساحل':
+                              icon = Icons.beach_access;
+                              break;
+
+                            case 'استخر':
+                              icon = Icons.pool;
+                              break;
+
+                            case 'باشگاه':
+                              icon = Icons.fitness_center;
+                              break;
+
+                            case 'کافه':
+                              icon = Icons.restaurant;
+                              break;
+
+                            case 'رستوران':
+                              icon = Icons.restaurant;
+                              break;
+
+                            case 'کولر':
+                              icon = Icons.ac_unit;
+                              break;
+
+                            default:
+                              icon = Icons.check_circle_outline;
+                          }
+                          return Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Container(
+                                padding: EdgeInsets.all(12),
+                                decoration: BoxDecoration(
+                                  color: Colors.grey.shade200,
+                                  borderRadius: BorderRadius.circular(16),
+                                ),
+                                child: Icon(
+                                  icon,
+                                  size: 30,
+                                  color: Colors.grey,
+                                ),
+                              ),
+                              SizedBox(height: 6),
+                              Text(
+                                a,
+                                style: textTheme.bodySmall!.copyWith(color: Colors.black87),
+                                textDirection: TextDirection.rtl,
+                              ),
+                            ],
+                          );
+                        },
+                        ).toList(), //end of Map
                       )
                     ],
                   ),
