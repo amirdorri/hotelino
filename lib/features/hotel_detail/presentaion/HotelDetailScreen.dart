@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:hotelino/features/home/data/hotel_repository.dart';
@@ -7,6 +6,7 @@ import 'package:hotelino/shared/service/json_data_service.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
+import 'full_screen_image_shower.dart';
 import 'full_screen_map.dart';
 
 class HotelDetailScreen extends StatelessWidget {
@@ -44,7 +44,12 @@ class HotelDetailScreen extends StatelessWidget {
                 expandedHeight: 300,
                 flexibleSpace: FlexibleSpaceBar(
                   background: GestureDetector(
-                    onLongPress: () {},
+                    onLongPress: () {
+                      PersistentNavBarNavigator.pushNewScreen(context,
+                          screen: FullScreenImageShower(myImageUrl: hotel.images.first),
+                          withNavBar: false,
+                          pageTransitionAnimation: PageTransitionAnimation.cupertino);
+                    },
                     child: Image.asset(imagePath, fit: BoxFit.cover),
                   ),
                 ),
@@ -167,7 +172,15 @@ class HotelDetailScreen extends StatelessWidget {
                             return Row(
                               children: [
                                 GestureDetector(
-                                  onTap: () {},
+                                  onTap: () {
+                                    PersistentNavBarNavigator.pushNewScreen(context,
+                                        screen: FullScreenImageShower(
+                                          myImageUrl: hotel.images[index],
+                                        ),
+                                        withNavBar: false,
+                                        pageTransitionAnimation: PageTransitionAnimation.cupertino
+                                    );
+                                  },
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(12),
                                     child: Image.asset(
@@ -176,7 +189,7 @@ class HotelDetailScreen extends StatelessWidget {
                                       width: 120,
                                       height: 100,
                                       fit: BoxFit.cover,
-                                    ), //TODO
+                                    ),
                                   ),
                                 ),
                                 if (index != 0) SizedBox(width: 8),
