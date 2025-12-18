@@ -1,5 +1,3 @@
-
-
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:hotelino/features/home/data/hotel_repository.dart';
@@ -8,7 +6,12 @@ import 'package:hotelino/shared/service/json_data_service.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 class HotelDetailScreen extends StatelessWidget {
-  const HotelDetailScreen({super.key, required this.hotelId, required this.imagePath});
+  const HotelDetailScreen({
+    super.key,
+    required this.hotelId,
+    required this.imagePath,
+  });
+
   final String hotelId;
   final String imagePath;
 
@@ -22,9 +25,7 @@ class HotelDetailScreen extends StatelessWidget {
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return const Scaffold(
-            body: Center(
-              child: CircularProgressIndicator(),
-            ),
+            body: Center(child: CircularProgressIndicator()),
           );
         }
 
@@ -32,30 +33,30 @@ class HotelDetailScreen extends StatelessWidget {
         return Scaffold(
           body: CustomScrollView(
             slivers: [
-            SliverAppBar(
-              floating: true,
-              pinned: false,
-              elevation: 8,
-              expandedHeight: 300,
-              flexibleSpace: FlexibleSpaceBar(
-                background: GestureDetector(
-                  onLongPress: (){},
-                  child: Image.asset(
-                    imagePath,
-                    fit: BoxFit.cover,
+              SliverAppBar(
+                floating: true,
+                pinned: false,
+                elevation: 8,
+                expandedHeight: 300,
+                flexibleSpace: FlexibleSpaceBar(
+                  background: GestureDetector(
+                    onLongPress: () {},
+                    child: Image.asset(imagePath, fit: BoxFit.cover),
                   ),
                 ),
+                leading: BackButton(
+                  onPressed: () {
+                    PersistentNavBarNavigator.pop(context);
+                  },
+                  color: Colors.white,
+                ),
               ),
-              leading: BackButton(
-                onPressed: (){
-                  PersistentNavBarNavigator.pop(context);
-                },
-                color: Colors.white,
-              ),
-            ),
               SliverToBoxAdapter(
                 child: Padding(
-                  padding: EdgeInsetsGeometry.symmetric(horizontal: 12, vertical: 16),
+                  padding: EdgeInsetsGeometry.symmetric(
+                    horizontal: 12,
+                    vertical: 16,
+                  ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
@@ -72,14 +73,14 @@ class HotelDetailScreen extends StatelessWidget {
                               hotel.address,
                               textAlign: TextAlign.right,
                               textDirection: TextDirection.rtl,
-                              style: TextStyle(fontSize: 14, color: Colors.grey),
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Colors.grey,
+                              ),
                             ),
                           ),
                           SizedBox(width: 8),
-                          Icon(
-                            Icons.location_on,
-                            color:Colors.grey ,
-                          )
+                          Icon(Icons.location_on, color: Colors.grey),
                         ],
                       ),
                       SizedBox(height: 16),
@@ -131,22 +132,19 @@ class HotelDetailScreen extends StatelessWidget {
                                   color: Colors.grey.shade200,
                                   borderRadius: BorderRadius.circular(16),
                                 ),
-                                child: Icon(
-                                  icon,
-                                  size: 30,
-                                  color: Colors.grey,
-                                ),
+                                child: Icon(icon, size: 30, color: Colors.grey),
                               ),
                               SizedBox(height: 6),
                               Text(
                                 a,
-                                style: textTheme.bodySmall!.copyWith(color: Colors.black87),
+                                style: textTheme.bodySmall!.copyWith(
+                                  color: Colors.black87,
+                                ),
                                 textDirection: TextDirection.rtl,
                               ),
                             ],
                           );
-                        },
-                        ).toList(), //end of Map
+                        }).toList(), //end of Map
                       ),
                       SizedBox(height: 16),
                       Text(
@@ -154,22 +152,18 @@ class HotelDetailScreen extends StatelessWidget {
                         style: textTheme.headlineSmall,
                         textDirection: TextDirection.rtl,
                       ),
-                      SizedBox(
-                        height: 8,
-                      ),
+                      SizedBox(height: 8),
                       SizedBox(
                         height: 100,
                         child: ListView.builder(
                           reverse: true,
-                            scrollDirection: Axis.horizontal,
-                            itemCount: hotel.images.length,
-                            itemBuilder:(context, index) {
-                              return Row(
-                                children: [
+                          scrollDirection: Axis.horizontal,
+                          itemCount: hotel.images.length,
+                          itemBuilder: (context, index) {
+                            return Row(
+                              children: [
                                 GestureDetector(
-                                  onTap: () {
-
-                                  },
+                                  onTap: () {},
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(12),
                                     child: Image.asset(
@@ -181,11 +175,10 @@ class HotelDetailScreen extends StatelessWidget {
                                     ), //TODO
                                   ),
                                 ),
-                                  if(index != 0)
-                                    SizedBox(width: 8),
-                                ],
-                              );
-                            },
+                                if (index != 0) SizedBox(width: 8),
+                              ],
+                            );
+                          },
                         ),
                       ),
                       SizedBox(height: 16),
@@ -202,17 +195,33 @@ class HotelDetailScreen extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                         maxLines: 7,
                       ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          TextButton(
+                            onPressed: () {
+                              // open Map
+                            },
+                            child: Text(
+                              'تمام صفحه',
+                              textDirection: TextDirection.rtl,
+                            ),
+                          ),
+                          Text(
+                            'موقعیت مکانی هتل روی نقشه',
+                            style: textTheme.headlineSmall,
+                            textDirection: TextDirection.rtl,
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 ),
-              )
+              ),
             ],
           ),
         );
-
-
       },
     );
   }
 }
-
