@@ -1,16 +1,126 @@
-# hotelino
+# 🏨 Hotelino
 
-A new Flutter project.
+A modern **Flutter hotel reservation application** built with a strong focus on clean architecture, advanced theming, and a polished user experience.
 
-## Getting Started
+> **Hotelino** is not just a demo project — it is a solid, scalable foundation suitable for real-world products and professional portfolios.
 
-This project is a starting point for a Flutter application.
+---
 
-A few resources to get you started if this is your first Flutter project:
+## ✨ Key Features
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+* 🎨 **Advanced Multi-Theme System**
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+  * Full Light / Dark mode support
+  * Fully **custom theming engine**
+  * Runtime theme switching
+
+* 🧱 **Clean Architecture (Inspired)**
+
+  * Clear separation of concerns (UI / Logic / Data)
+  * Highly readable and maintainable codebase
+
+* 🧠 **State Management with Provider**
+
+  * Simple, scalable, and test-friendly
+  * No unnecessary complexity
+
+* 🗓 **Persian (Jalali) Date Picker**
+
+  * Perfect for Persian / RTL-based applications
+  * Localized and user-friendly experience
+
+* 🏨 **Hotel Listing & Details**
+
+  * Hotel list view
+  * Detailed hotel page
+  * Map integration for hotel location
+
+* 🧩 **Reusable & Modular Widgets**
+
+  * Cards, buttons, layouts, and shared components
+
+* 📱 **Modern & Responsive UI**
+
+  * Clean visual design
+  * Optimized for different screen sizes
+
+---
+
+## 🗂 Project Structure
+
+```
+lib/
+├── core/
+│   ├── theme/        # Theme system & styling
+│   ├── constants/    # Shared constants
+│   └── utils/        # Helpers & utilities
+│
+├── data/
+│   ├── models/       # Data models (Hotel, Location, ...)
+│   └── services/     # Data sources (Local / JSON)
+│
+├── features/
+│   ├── home/         # Home feature
+│   ├── hotel_detail/ # Hotel details feature
+│   └── booking/      # Booking logic
+│
+├── providers/        # State management (Provider)
+│
+├── widgets/          # Shared & reusable widgets
+│
+└── main.dart         # Application entry point
+```
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+* Flutter `>= 3.x`
+* Dart `>= 3.x`
+
+### Run the project
+
+```bash
+flutter pub get
+flutter run
+```
+
+---
+
+## 🧪 Project Status
+
+* ✅ Suitable for learning clean architecture in Flutter
+* ✅ Ideal as a portfolio project
+* 🔧 Ready for real backend integration (REST / GraphQL)
+* 🔧 Easy to extend with authentication, payments, and more
+
+---
+
+## 📌 Tech Stack
+
+* Flutter
+* Provider
+* Persian (Jalali) Date Picker
+* Flutter Map / Map integration
+* Custom Theme Engine
+
+---
+
+## 👨‍💻 Author
+
+**Amir Dorri**
+Flutter Developer
+
+* GitHub: [https://github.com/amirdorri](https://github.com/amirdorri)
+
+---
+
+## 📄 License
+
+This project is developed for educational and portfolio purposes. You are free to use and extend it.
+
+---
+
+⭐ If you find this project useful, consider giving it a star!
