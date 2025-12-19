@@ -31,7 +31,7 @@ class _FullScreenImageShowerState extends State<FullScreenImageShower> {
             enableRotation: false,
             initialScale: PhotoViewComputedScale.contained * 1,
             backgroundDecoration: BoxDecoration(color: Colors.black),
-            imageProvider: NetworkImage(networkUrl(widget.myImageUrl))),
+            imageProvider: NetworkImage(widget.myImageUrl)),
       ),
     );
   }

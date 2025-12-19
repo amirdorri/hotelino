@@ -1,29 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:hotelino/core/utils/network.dart';
 import 'package:hotelino/features/home/data/hotel_repository.dart';
 import 'package:hotelino/model/home/HotelModel.dart';
 import 'package:hotelino/shared/service/json_data_service.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
-
 import 'full_screen_image_shower.dart';
 import 'full_screen_map.dart';
 
 class HotelDetailScreen extends StatelessWidget {
-  const HotelDetailScreen({
-    super.key,
-    required this.hotelId,
-    required this.imagePath,
-  });
+  const HotelDetailScreen({super.key, required this.hotelId});
 
   final String hotelId;
-  final String imagePath;
 
   @override
   Widget build(BuildContext context) {
     final hotelRepository = HotelRepository(jsonDataService: JsonDataService());
     final textTheme = Theme.of(context).textTheme;
-    //var myRandomNumber = Random().nextInt(14) + 1;
     return FutureBuilder<HotelModel>(
       future: hotelRepository.getHotelById(hotelId),
       builder: (context, snapshot) {
@@ -45,12 +39,20 @@ class HotelDetailScreen extends StatelessWidget {
                 flexibleSpace: FlexibleSpaceBar(
                   background: GestureDetector(
                     onLongPress: () {
-                      PersistentNavBarNavigator.pushNewScreen(context,
-                          screen: FullScreenImageShower(myImageUrl: hotel.images.first),
-                          withNavBar: false,
-                          pageTransitionAnimation: PageTransitionAnimation.cupertino);
+                      PersistentNavBarNavigator.pushNewScreen(
+                        context,
+                        screen: FullScreenImageShower(
+                          myImageUrl: hotel.images.first,
+                        ),
+                        withNavBar: false,
+                        pageTransitionAnimation:
+                            PageTransitionAnimation.cupertino,
+                      );
                     },
-                    child: Image.asset(imagePath, fit: BoxFit.cover),
+                    child: Image.network(
+                      fit: BoxFit.cover,
+                      hotel.images.first,
+                    ),
                   ),
                 ),
                 leading: BackButton(
@@ -146,9 +148,7 @@ class HotelDetailScreen extends StatelessWidget {
                               SizedBox(height: 6),
                               Text(
                                 a,
-                                style: textTheme.bodySmall!.copyWith(
-                                  color: Colors.black87,
-                                ),
+                                style: textTheme.bodyMedium,
                                 textDirection: TextDirection.rtl,
                               ),
                             ],
@@ -173,19 +173,20 @@ class HotelDetailScreen extends StatelessWidget {
                               children: [
                                 GestureDetector(
                                   onTap: () {
-                                    PersistentNavBarNavigator.pushNewScreen(context,
-                                        screen: FullScreenImageShower(
-                                          myImageUrl: hotel.images[index],
-                                        ),
-                                        withNavBar: false,
-                                        pageTransitionAnimation: PageTransitionAnimation.cupertino
+                                    PersistentNavBarNavigator.pushNewScreen(
+                                      context,
+                                      screen: FullScreenImageShower(
+                                        myImageUrl: hotel.images[index],
+                                      ),
+                                      withNavBar: false,
+                                      pageTransitionAnimation:
+                                          PageTransitionAnimation.cupertino,
                                     );
                                   },
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(12),
-                                    child: Image.asset(
-                                      imagePath,
-                                      // 'assets/images/hotel_pics/hotel_pic$myRandomNumber.jpg',
+                                    child: Image.network(
+                                      hotel.images[index],
                                       width: 120,
                                       height: 100,
                                       fit: BoxFit.cover,
@@ -217,14 +218,17 @@ class HotelDetailScreen extends StatelessWidget {
                         children: [
                           TextButton(
                             onPressed: () {
-                              PersistentNavBarNavigator.pushNewScreen(context,
-                                  screen: FullScreenMapPage(
-                                      latitude: hotel.location.latitude,
-                                      longitude: hotel.location.longitude,
-                                      hotelName: hotel.name
-                                  ),
-                                  withNavBar: false,
-                                  pageTransitionAnimation: PageTransitionAnimation.cupertino);
+                              PersistentNavBarNavigator.pushNewScreen(
+                                context,
+                                screen: FullScreenMapPage(
+                                  latitude: hotel.location.latitude,
+                                  longitude: hotel.location.longitude,
+                                  hotelName: hotel.name,
+                                ),
+                                withNavBar: false,
+                                pageTransitionAnimation:
+                                    PageTransitionAnimation.cupertino,
+                              );
                             },
                             child: Text(
                               'تمام صفحه',
@@ -254,7 +258,8 @@ class HotelDetailScreen extends StatelessWidget {
                               ),
                               interactionOptions: InteractionOptions(
                                 flags:
-                                    InteractiveFlag.all & ~InteractiveFlag.rotate,
+                                    InteractiveFlag.all &
+                                    ~InteractiveFlag.rotate,
                               ),
                             ),
                             children: [
@@ -288,9 +293,8 @@ class HotelDetailScreen extends StatelessWidget {
                                           color: Colors.white.withOpacity(0.8),
                                           child: Text(
                                             hotel.name,
-                                            style: textTheme.bodySmall!.copyWith(
-                                              color: Colors.black,
-                                            ),
+                                            style: textTheme.bodySmall!
+                                                .copyWith(color: Colors.black),
                                             textDirection: TextDirection.rtl,
                                             textAlign: TextAlign.center,
                                             maxLines: 1,
@@ -306,7 +310,7 @@ class HotelDetailScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(height: 0)
+                      SizedBox(height: 0),
                     ],
                   ),
                 ),

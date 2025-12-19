@@ -71,7 +71,6 @@ class StoryCarouselState extends State<StoryCarousel> {
 
   @override
   Widget build(BuildContext context) {
-    int i = 0;
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Stack(
@@ -90,14 +89,12 @@ class StoryCarouselState extends State<StoryCarousel> {
               },
             ),
             items: widget.images.map((imageUrl) {
-              i++;
-              i+= i;
               return ClipRRect(
                 borderRadius: BorderRadius.circular(16),
                 child: Stack(
                   fit: StackFit.expand,
                   children: [
-                    Image.asset('assets/images/hotel_pics/hotel_pic$i.jpg', fit: BoxFit.cover),
+                    Image.network(imageUrl, fit: BoxFit.cover),
                     Container(
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
